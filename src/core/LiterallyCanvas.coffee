@@ -293,8 +293,6 @@ module.exports = class LiterallyCanvas
           @draw(@shapes, @bufferCtx, retryCallback)
         @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
         if @canvas.width > 0 and @canvas.height > 0
-          @ctx.fillStyle = '#ccc'
-          @ctx.fillRect(0, 0, @canvas.width, @canvas.height)
           @clipped (=>
             @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
             @ctx.drawImage @buffer, 0, 0
@@ -311,16 +309,11 @@ module.exports = class LiterallyCanvas
     @trigger('repaint', {layerKey: repaintLayerKey})
 
   _renderWatermark: (ctx, worryAboutRetina=true, retryCallback) ->
-    unless @watermarkImage.width
-      @watermarkImage.onload = retryCallback
-      return
-
     ctx.save()
-    ctx.translate(ctx.canvas.width / 2, ctx.canvas.height / 2)
     ctx.scale(@watermarkScale, @watermarkScale)
     ctx.scale(@backingScale, @backingScale) if worryAboutRetina
     ctx.drawImage(
-      @watermarkImage, -@watermarkImage.width / 2, -@watermarkImage.height / 2)
+      @watermarkImage, 0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.restore()
 
   # Redraws the back buffer to the screen in its current state
@@ -393,6 +386,15 @@ module.exports = class LiterallyCanvas
     if triggerClearEvent
       @trigger('clear', null)
     @trigger('drawingChange', {})
+
+  download: ->
+    image = @canvasForExport().toDataURL()
+    aLink = document.createElement("a")
+    aLink.download = "image.png"
+    aLink.href = image
+    evt = document.createEvent("HTMLEvents")
+    evt.initEvent("click")
+    aLink.dispatchEvent(evt)
 
   execute: (action) ->
     @undoStack.push(action)
