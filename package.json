@@ -1,7 +1,7 @@
 {
   "name": "literallycanvas",
-  "version": "0.4.14",
-  "description": "HTML5 drawing widget",
+  "version": "0.4.0",
+  "description": "HTML5 video drawing widget",
   "main": "lib/js",
   "scripts": {
     "prepublish": "gulp commonjs",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/literallycanvas/literallycanvas.git"
+    "url": "git://github.com/MazGrasl/literallycanvas.git"
   },
   "keywords": [
     "html5",
@@ -19,7 +19,7 @@
   "author": "Steve Johnson and Cameron Paul",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/literallycanvas/literallycanvas/issues"
+    "url": "https://github.com/MazGrasl/literallycanvas/issues"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
