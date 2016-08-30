@@ -13,10 +13,11 @@
   },
   "keywords": [
     "html5",
+    "video",
     "canvas",
     "drawing"
   ],
-  "author": "Steve Johnson and Cameron Paul",
+  "author": "Steve Johnson, Cameron Paul, Martin Grossberger",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/MazGrasl/literallycanvas/issues"
