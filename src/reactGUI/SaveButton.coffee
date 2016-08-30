@@ -11,7 +11,7 @@ SaveButton = React.createClass
 
   render: ->
     {div} = React.DOM
-    {lc} = @props
+    {lc, imageURLPrefix} = @props
 
     className = classSet
       'lc-save': true
@@ -20,7 +20,14 @@ SaveButton = React.createClass
       'disabled': not @state.isEnabled
     onClick = if lc.canUndo() then (=> lc.download()) else ->
 
-    (div {className, onClick}, _('Save'))
+    (div {
+        className, onClick, style: {
+            'backgroundImage': "url(#{imageURLPrefix}/ic_save_black_24dp_2x.png)",
+            'background-size': 'contain',
+            'background-repeat': 'no-repeat',
+            'background-position': 'center'
+        }
+    })
 
 
 module.exports = SaveButton

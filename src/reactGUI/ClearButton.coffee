@@ -11,7 +11,7 @@ ClearButton = React.createClass
 
   render: ->
     {div} = React.DOM
-    {lc} = @props
+    {lc, imageURLPrefix} = @props
 
     className = classSet
       'lc-clear': true
@@ -20,7 +20,14 @@ ClearButton = React.createClass
       'disabled': not @state.isEnabled
     onClick = if lc.canUndo() then (=> lc.clear()) else ->
 
-    (div {className, onClick}, _('Clear'))
+    (div {
+        className, onClick, style: {
+            'backgroundImage': "url(#{imageURLPrefix}/ic_delete_black_24dp_2x.png)",
+            'background-size': 'contain',
+            'background-repeat': 'no-repeat',
+            'background-position': 'center'
+        }
+    })
 
 
 module.exports = ClearButton
