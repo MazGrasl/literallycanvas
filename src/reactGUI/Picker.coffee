@@ -15,8 +15,7 @@ ColorPickers = React.createFactory React.createClass
     {div} = React.DOM
     (div {className: 'lc-color-pickers'},
       (ColorWell {lc, colorName: 'primary', label: _('stroke')})
-      (ColorWell {lc, colorName: 'secondary', label: _('fill')}),
-      (ColorWell {lc, colorName: 'background', label: _('bg')})
+      (ColorWell {lc, colorName: 'secondary', label: _('fill')})
     )
 
 
@@ -39,19 +38,19 @@ Picker = React.createClass
           }
         )
       ),
-      if toolButtonComponents.length % 2 != 0
-        (div {className: 'toolbar-button thin-button disabled'})
+#      if toolButtonComponents.length % 2 != 0
+#        (div {className: 'toolbar-button thin-button disabled'})
       (div style: {
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
         },
-        SaveButton({lc})
         ColorPickers({lc: @props.lc})
         UndoRedoButtons({lc, imageURLPrefix})
 #        ZoomButtons({lc, imageURLPrefix})
         ClearButton({lc})
+        SaveButton({lc})
       )
     )
   render: ->
