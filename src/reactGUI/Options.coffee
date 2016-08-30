@@ -1,6 +1,7 @@
 React = require './React-shim'
 createSetStateOnEventMixin = require './createSetStateOnEventMixin'
 {optionsStyles} = require '../optionsStyles/optionsStyles'
+{_} = require '../core/localization'
 
 
 Options = React.createClass
@@ -17,6 +18,10 @@ Options = React.createClass
     style = "" + @state.style
     optionsStyles[style] && optionsStyles[style]({
       lc: @props.lc, tool: @state.tool, imageURLPrefix: @props.imageURLPrefix})
+    (div { classname: logo-label },
+        (img { src: "#{@props.imageURLPrefix}/playbuttonschwarz.png" }),
+        _("Analysis")
+    )
 
   render: ->
     {div} = React.DOM
