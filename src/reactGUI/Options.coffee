@@ -18,15 +18,21 @@ Options = React.createClass
     style = "" + @state.style
     optionsStyles[style] && optionsStyles[style]({
       lc: @props.lc, tool: @state.tool, imageURLPrefix: @props.imageURLPrefix})
-    (div { classname: logo-label },
+
+  renderLogo: ->
+    {div,img,span} = React.DOM
+    (div { className: 'logo-label' },
         (img { src: "#{@props.imageURLPrefix}/playbuttonschwarz.png" }),
-        _("Analysis")
+        (span {},
+            _("Analysis")
+        )
     )
 
   render: ->
     {div} = React.DOM
     (div {className: 'lc-options horz-toolbar'},
-      this.renderBody()
+      this.renderBody(),
+      this.renderLogo()
     )
 
 module.exports = Options
