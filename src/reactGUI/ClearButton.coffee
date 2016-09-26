@@ -23,9 +23,9 @@ ClearButton = React.createClass
     (div {
         className, onClick, style: {
             'backgroundImage': "url(#{imageURLPrefix}/ic_delete_black_24dp_2x.png)",
-            'background-size': 'contain',
-            'background-repeat': 'no-repeat',
-            'background-position': 'center'
+            'backgroundSize': 'contain',
+            'backgroundRepeat': 'no-repeat',
+            'backgroundPosition': 'center'
         }
     })
 
