@@ -310,8 +310,8 @@ module.exports = class LiterallyCanvas
 
   _renderWatermark: (ctx, worryAboutRetina=true, retryCallback) ->
     ctx.save()
-    ctx.scale(@watermarkScale, @watermarkScale)
-    ctx.scale(@backingScale, @backingScale) if worryAboutRetina
+#    ctx.scale(@watermarkScale, @watermarkScale)
+#    ctx.scale(@backingScale, @backingScale) if worryAboutRetina
     ctx.drawImage(
       @watermarkImage, 0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.restore()
@@ -388,13 +388,14 @@ module.exports = class LiterallyCanvas
     @trigger('drawingChange', {})
 
   download: ->
+    filename = (new Date()).getTime() + ".png"
     image = @canvasForExport().toDataURL()
-    aLink = document.createElement("a")
-    aLink.download = "image.png"
-    aLink.href = image
-    evt = document.createEvent("HTMLEvents")
-    evt.initEvent("click")
-    aLink.dispatchEvent(evt)
+    item = document.createElement("a")
+    item.download = filename
+    item.href = image.replace(/^data:image\/[^;]*/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename='+filename+'.png')
+    document.body.appendChild(item)
+    item.click()
+    document.body.removeChild(item)
 
   execute: (action) ->
     @undoStack.push(action)
